@@ -141,7 +141,7 @@ export const WorldSteps = () => {
     }, [levels])
 
     return (
-        <article className='h-[calc(100vh)] relative grid place-items-center'>
+        <article className={`h-[calc(100vh)] relative grid place-items-center ${indicationsAll && validateIndications && 'overflow-hidden'}`}>
             {
                 indicationsAll && validateIndications && (
                     <ComponentIndications

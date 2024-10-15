@@ -23,7 +23,7 @@ export const ComponentIndications = ({
     dispatch
 }) => {
     return (
-        <section className='bg-[#00000099] w-full h-[calc(100vh)] absolute z-50 flex justify-start items-end'>
+        <section className='bg-[#00000099] w-full h-[calc(100vh)] absolute z-50 flex justify-start items-end '>
 
             <div className='xl:w-[32%] w-[40%] flex flex-col'>
                 {
