@@ -51,6 +51,9 @@ export const WorldSteps = () => {
     const [indicationsAll, setIndicationsAll] = useState(true)
     const [isOpenModal, setIsOpenModal] = useState(false)
     const [isOpenModalWin, setIsOpenModalWin] = useState(false)
+    const [validateCloseModalWin, setValidateCloseModalWin] = useState(true)
+    console.log(validateCloseModalWin);
+
 
 
     const navigateRiddle = (id) => {
@@ -136,7 +139,7 @@ export const WorldSteps = () => {
 
     useEffect(() => {
 
-        levels?.level6 && setIsOpenModalWin(true)
+        levels?.level6 && validateCloseModalWin && setIsOpenModalWin(true)
 
     }, [levels])
 
@@ -239,7 +242,7 @@ export const WorldSteps = () => {
             />
             <ModalWin
                 isOpen={isOpenModalWin}
-                closeModal={() => setIsOpenModalWin(false)}
+                closeModal={() => { setIsOpenModalWin(false); setValidateCloseModalWin(false) }}
                 actionSecconButton={() => goToHome()}
             />
         </article>

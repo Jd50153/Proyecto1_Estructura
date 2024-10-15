@@ -47,7 +47,7 @@ export const CorrectAnswerLevel = ({
     };
     const activeLevel = Object.keys(levels).find((level, index) => levels[level] && id === index + 1);
     return (
-        <div>
+        <div className='h-full overflow-y-auto'>
             {activeLevel && (
                 <div className='flex justify-center flex-col items-center'>
                     <h1 className='font-bold text-primary-blue1 text-2xl mt-10'>¡En hora buena! , acertijo resuelto</h1>
