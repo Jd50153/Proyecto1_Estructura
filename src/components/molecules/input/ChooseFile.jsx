@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { TypeFile } from './TypeFile'
 import { Icons } from '../../../assets/icons/IconProvider';
-const { IconUpload , IconTxt } = Icons
+const { IconUpload, IconTxt } = Icons
 
 export const ChooseFile = ({
     setInfoFile,
@@ -10,14 +10,18 @@ export const ChooseFile = ({
     selectFile,
     setSelectFile,
     preview,
-    setPreview
+    setPreview,
+    setLevelsAndCompletedLevels,
+    resetGame,
+    dispatch
 
 }) => {
-    
+
 
     const handleDelete = () => {
         setSelectFile("");
         setPreview("");
+        dispatch(resetGame())
     };
 
     const onSelectFile = async (e) => {
@@ -25,6 +29,7 @@ export const ChooseFile = ({
             setSelectFile(undefined);
             return;
         }
+
         const file = e.target.files[0];
 
         if (file.type !== "text/plain") {
@@ -34,18 +39,35 @@ export const ChooseFile = ({
         }
 
         setSelectFile(file);
-        setInfoFile(file)
+        setInfoFile(file);
 
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const fileContent = event.target.result;
 
+            try {
+                const progressData = JSON.parse(fileContent);
+                const { levels, completedLevels } = progressData;
+
+                if (levels && completedLevels) {
+                    setLevelsAndCompletedLevels(levels, completedLevels);
+                    
+                } else {
+                    throw new Error("Estructura del archivo no válida.");
+                }
+            } catch (error) {
+                console.error("Error al leer el archivo: ", error);
+                setAlertTxt(true);
+                handleDelete();
+            }
+        };
+        reader.readAsText(file);
     };
 
     useEffect(() => {
-        if (selectFile) {
-
-            if (selectFile?.type !== "text/plain") {
-                handleDelete();
-                setAlertTxt(true);
-            }
+        if (selectFile && selectFile?.type !== "text/plain") {
+            handleDelete();
+            setAlertTxt(true);
         }
     }, [selectFile]);
 

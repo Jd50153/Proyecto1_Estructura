@@ -19,7 +19,7 @@ export default {
       keyframes: {
         bounce: {
           '0%, 100%': {
-            transform: 'translateY(-3%)', // Ajuste a un 10% para menos movimiento
+            transform: 'translateY(-3%)', 
             'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1)',
           },
           '50%': {

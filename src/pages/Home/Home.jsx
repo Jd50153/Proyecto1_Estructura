@@ -1,17 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ButtonA } from '../../components/molecules/buttons/ButtonA'
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../../routes/routes'
 import { motion } from 'framer-motion'
+import { resetGame } from '../../redux/gameSlice/GameSlice'
+import { useDispatch } from 'react-redux'
 
 
-export const Home = () => {
+export const Home = ({ setHasStartedGame }) => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const navigateUploadFile = () => {
         navigate(routes.UPLOADFILE)
     }
+
+    const handleStartGame = () => {
+        setHasStartedGame(true);
+    };
+
+    const navigateWorlds = () => {
+        navigate(routes.WORLDSTEPS)
+        handleStartGame()
+    }
+    useEffect(() => {
+        setHasStartedGame(false);
+        dispatch(resetGame())
+    }, [])
+
+
     return (
-        <body className=' grid grid-cols-2 h-[calc(100vh)] overflow-hidden'>
+        <article className=' grid grid-cols-2 h-[calc(100vh)] overflow-hidden'>
             <article
                 style={{
                     background: `url(https://cdn.wallpapersafari.com/18/9/uRQOg4.png)`,
@@ -36,7 +55,7 @@ export const Home = () => {
 
                         <ButtonA
                             text={"Iniciar juego"}
-                            // action={""}
+                            action={navigateWorlds}
                             hoverButton={"hover:bg-[#859ab6]"}
                             bgButton={"bg-primary-blue4"}
                             textColor={"text-white"}
@@ -53,6 +72,6 @@ export const Home = () => {
                     </div>
                 </motion.section>
             </article>
-        </body>
+        </article>
     )
 }

@@ -1,4 +1,9 @@
 export const routes={
     HOME:'/',
-    UPLOADFILE:'/upload-file'
+    UPLOADFILE:'/upload-file',
+    WORLDSTEPS:'/worlds-aventure',
+    RIDDLE:'/riddle-aventure',
+
+
+
 }
