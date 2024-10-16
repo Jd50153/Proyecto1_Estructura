@@ -21,3 +21,7 @@
 - Se ha utilizado react-hook-form , para el manejo de la subida del archivo o la manera en que se responde el acertijo.
 - Para la navegación de paginas, react-router-dom
 - Para el manejo de estados globales , redux-toolkit
+## Integrantes
+- Julián Rodriguez
+- Jhon Harold Marín
+- Camilo Gañan
